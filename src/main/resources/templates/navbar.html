@@ -1,0 +1,46 @@
+
+<nav class="navbar navbar-expand-lg" style="background-color: darkslateblue">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" th:href="@{'/'}"
+           style="font-size:30px;font-family:'Brush Script MT'">Spring Security</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-light" th:href="@{'/'}"
+                       style="font-family: 'Lucida Handwriting'">Home</a>
+                </li>
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <a class="nav-link text-light" th:href="@{'/signin'}"
+                       style="font-family: 'Lucida Handwriting'">Sign In</a>
+                </li>
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <a class="nav-link text-light" th:href="@{'/signup'}"
+                       style="font-family: 'Lucida Handwriting'">Sign Up</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                    <a class="nav-link text-light" th:href="@{'/admin/adminpage'}"
+                       style="font-family: 'Lucida Handwriting'">Admin Panel</a>
+                </li>
+                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false"
+                           style="font-family: 'Lucida Handwriting';color: white">
+                            <span th:text="${#authentication.getPrincipal().fullName}"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="JavaScript:void(0)"
+                                   onclick="signOutForm.submit()">Sign out</a></li>
+                            <li><form th:action="@{'/signout'}" method="post" id="signOutForm"></form></li>
+                        </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

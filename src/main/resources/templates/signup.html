@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<div layout:fragment="mainContent">
+    <div class="row">
+        <div class="col-6 mx-auto mt-2">
+            <h1 style="font-family: 'Lucida Handwriting';color: darkslateblue">Sign Up</h1>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${param.error!=null}">
+                Error on adding user!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${param.success!=null}">
+                User added successfully!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <form th:action="@{'/signup'}" method="post">
+        <div class="row mt-3">
+            <div class="col-12">
+                <label>EMAIL:</label>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <input type="email" class="form-control" name="user_email" >
+            </div>
+        </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label>PASSWORD:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input type="password" class="form-control" name="user_password" >
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label>RETYPE PASSWORD:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input type="password" class="form-control" name="user_re_password" >
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label>FULL NAME:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input type="text" class="form-control" name="full_name" >
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <button class="btn btn-success">SIGN IN</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</html>
